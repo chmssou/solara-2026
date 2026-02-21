@@ -1,0 +1,1264 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SOLARA 2026 | مستقبل الطاقة في الجزائر 🇩🇿</title>
+  <meta name="description" content="الحاسبة الذكية الأولى في الجزائر لتقدير تكاليف وتوفير الطاقة الشمسية. ابدأ رحلتك نحو الطاقة النظيفة الآن.">
+  
+  <!-- Open Graph / WhatsApp / Facebook -->
+  <meta property="og:title" content="SOLARA 2026 | مستقبل الطاقة في الجزائر 🇩🇿">
+  <meta property="og:description" content="الحاسبة الذكية الأولى في الجزائر لتقدير تكاليف وتوفير الطاقة الشمسية. ابدأ رحلتك نحو الطاقة النظيفة الآن.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1200&q=80">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ar_DZ">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SOLARA 2026 | مستقبل الطاقة في الجزائر 🇩🇿">
+  <meta name="twitter:description" content="الحاسبة الذكية الأولى في الجزائر لتقدير تكاليف وتوفير الطاقة الشمسية.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1200&q=80">
+  
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: { arabic: ['Cairo', 'sans-serif'] },
+          colors: {
+            navy: { 900: '#0a192f', 800: '#112240' },
+            cyan: { 400: '#00f2ff', 500: '#00f2ff', 600: '#00c4cc' },
+            emerald: { 400: '#50c878', 500: '#50c878', 600: '#3da35d' }
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- AOS -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+  
+  <!-- GSAP + ScrollTrigger + ScrollTo -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollToPlugin.min.js"></script>
+  
+  <style>
+    /* ============================================
+       ALGERIAN ZELLIJ THEME - COLOR PALETTE
+       ============================================ */
+    :root {
+      --midnight-navy: #0a192f;
+      --electric-cyan: #00f2ff;
+      --emerald-green: #50c878;
+      --zellij-opacity: 0.05;
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { 
+      font-family: 'Cairo', sans-serif; 
+      background: #0a192f;
+      color: #e2e8f0;
+    }
+    
+    /* Prevent body scroll when modal is open */
+    body.modal-open { overflow: hidden; }
+    
+    /* Stars Canvas */
+    #stars-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+    
+    /* Loader */
+    .loader {
+      position: fixed;
+      inset: 0;
+      background: #0a192f;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 99999;
+      transition: opacity 0.8s, visibility 0.8s;
+    }
+    .loader.hidden { opacity: 0; visibility: hidden; }
+    .loader-ring {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      border: 3px solid transparent;
+      border-top-color: #00f2ff;
+      border-radius: 50%;
+      animation: spin 1.5s linear infinite;
+    }
+    .loader-ring:nth-child(2) { width: 80px; height: 80px; border-top-color: #00d1ff; animation-duration: 1.2s; animation-direction: reverse; }
+    .loader-ring:nth-child(3) { width: 60px; height: 60px; border-top-color: #06b6d4; animation-duration: 0.8s; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    
+    /* Glassmorphism */
+    .glass {
+      background: rgba(17, 34, 64, 0.7);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(0, 242, 255, 0.2);
+    }
+    .glass-cyan {
+      background: linear-gradient(135deg, rgba(0, 242, 255, 0.15), rgba(34, 211, 238, 0.05));
+      border: 1px solid rgba(0, 242, 255, 0.3);
+    }
+    
+    /* Neon */
+    .text-neon {
+      background: linear-gradient(135deg, #00f2ff, #22d3ee);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+    
+    /* Hero */
+    .hero {
+      background: linear-gradient(180deg, #0a192f 0%, rgba(0, 242, 255, 0.05) 50%, #0a192f 100%),
+                  url('https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1920&q=80');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+    
+    /* Navbar */
+    #navbar { transition: all 0.3s ease; }
+    #navbar.scrolled {
+      background: rgba(10, 25, 47, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 0.75rem 0;
+    }
+    
+    /* ============================================
+       ALGERIAN ZELLIJ HEADER PATTERN (opacity 0.05)
+       ============================================ */
+    .zellij-header { 
+      position: relative; 
+    }
+    .zellij-header::before { 
+      content: ''; 
+      position: absolute; 
+      top: 0; 
+      left: 0; 
+      right: 0; 
+      bottom: 0; 
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5 L35 15 L30 25 L25 15 Z' fill='none' stroke='%2300f2ff' stroke-width='0.5' opacity='0.15'/%3E%3Ccircle cx='30' cy='30' r='8' fill='none' stroke='%2350c878' stroke-width='0.5' opacity='0.1'/%3E%3C/svg%3E"); 
+      background-size: 60px 60px; 
+      pointer-events: none; 
+      opacity: 0.05; 
+    }
+    
+    /* ============================================
+       INTERACTIVE SVG LOGO - ELECTRIC CYAN PULSE + ROTATE
+       ============================================ */
+    .solara-logo { 
+      display: flex; 
+      align-items: center; 
+      gap: 8px; 
+      cursor: pointer; 
+      transition: all 0.3s ease; 
+    }
+    .solara-logo svg { 
+      transition: all 0.3s ease; 
+    }
+    .solara-logo:hover svg { 
+      transform: rotate(5deg); 
+      filter: drop-shadow(0 0 15px rgba(0, 242, 255, 0.9)); 
+    }
+    .solara-logo:hover .logo-sun { 
+      animation: logoPulse 1.5s ease-in-out infinite; 
+    }
+    @keyframes logoPulse { 
+      0% { 
+        filter: drop-shadow(0 0 5px rgba(0, 242, 255, 0.6)); 
+      } 
+      50% { 
+        filter: drop-shadow(0 0 25px rgba(0, 242, 255, 1)); 
+      } 
+      100% { 
+        filter: drop-shadow(0 0 5px rgba(0, 242, 255, 0.6)); 
+      } 
+    }
+    
+    /* ============================================
+       ZELLIJ CORNER DECORATIONS
+       ============================================ */
+    .zellij-corner { position: relative; }
+    .zellij-corner::before { 
+      content: ''; 
+      position: absolute; 
+      top: -1px; 
+      left: -1px; 
+      width: 30px; 
+      height: 30px; 
+      border-top: 2px solid #00f2ff; 
+      border-left: 2px solid #00f2ff; 
+      border-radius: 8px 0 0 0; 
+      opacity: 0.6; 
+    }
+    .zellij-corner::after { 
+      content: ''; 
+      position: absolute; 
+      bottom: -1px; 
+      right: -1px; 
+      width: 30px; 
+      height: 30px; 
+      border-bottom: 2px solid #50c878; 
+      border-right: 2px solid #50c878; 
+      border-radius: 0 0 8px 0; 
+      opacity: 0.6; 
+    }
+    
+    /* ============================================
+       ZELLIJ-STYLE MODAL BORDER + BUTTONS
+       ============================================ */
+    .modal-content.zellij-modal { 
+      position: relative; 
+      overflow: visible; 
+      /* Zellij-style border */
+      border: 2px solid rgba(0, 242, 255, 0.4);
+      box-shadow: 
+        0 0 30px rgba(0, 242, 255, 0.2),
+        inset 0 0 60px rgba(0, 242, 255, 0.05);
+    }
+    .modal-content.zellij-modal::before { 
+      content: ''; 
+      position: absolute; 
+      top: 12px; 
+      left: 12px; 
+      width: 40px; 
+      height: 40px; 
+      border: 2px solid rgba(0, 242, 255, 0.5); 
+      border-radius: 50% 50% 50% 0; 
+      transform: rotate(-45deg); 
+      pointer-events: none; 
+    }
+    .modal-content.zellij-modal::after { 
+      content: ''; 
+      position: absolute; 
+      bottom: 12px; 
+      right: 12px; 
+      width: 40px; 
+      height: 40px; 
+      border: 2px solid rgba(80, 200, 120, 0.5); 
+      border-radius: 0 50% 50% 0; 
+      transform: rotate(-45deg); 
+      pointer-events: none; 
+    }
+    
+    /* Buttons with 0.3s smooth transitions + Zellij style */
+    .btn-neon {
+      background: linear-gradient(135deg, #0a192f, #112240);
+      border: 1px solid rgba(0, 242, 255, 0.4);
+      box-shadow: 0 0 20px rgba(0, 242, 255, 0.2);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    .btn-neon:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 40px rgba(0, 242, 255, 0.4);
+      border-color: #00f2ff;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #00f2ff, #00c4cc);
+      color: #0a192f;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .btn-primary:hover {
+      box-shadow: 0 10px 40px rgba(0, 242, 255, 0.5);
+      transform: translateY(-2px);
+    }
+    
+    /* Slider */
+    .slider-cyan {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      height: 8px;
+      background: linear-gradient(90deg, #112240, #00f2ff);
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .slider-cyan::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 24px;
+      height: 24px;
+      background: linear-gradient(135deg, #00f2ff, #22d3ee);
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 0 20px rgba(0, 242, 255, 0.6);
+      transition: all 0.3s ease;
+    }
+    .slider-cyan::-moz-range-thumb {
+      width: 24px;
+      height: 24px;
+      background: linear-gradient(135deg, #00f2ff, #22d3ee);
+      border-radius: 50%;
+      cursor: pointer;
+      border: none;
+      box-shadow: 0 0 20px rgba(0, 242, 255, 0.6);
+      transition: all 0.3s ease;
+    }
+    
+    /* Result Cards */
+    .result-card {
+      background: rgba(0, 242, 255, 0.05);
+      border: 1px solid rgba(0, 242, 255, 0.2);
+      transition: all 0.3s ease;
+    }
+    .result-card:hover { 
+      border-color: rgba(0, 242, 255, 0.5); 
+      transform: translateY(-5px); 
+      box-shadow: 0 10px 30px rgba(0, 242, 255, 0.2);
+    }
+    
+    /* Timeline */
+    .timeline-item { position: relative; padding-right: 70px; }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      right: 25px;
+      top: 0;
+      bottom: -25px;
+      width: 2px;
+      background: linear-gradient(to bottom, #00f2ff, transparent);
+    }
+    .timeline-item:last-child::before { display: none; }
+    .timeline-icon {
+      position: absolute;
+      right: 0;
+      width: 50px;
+      height: 50px;
+      background: #112240;
+      border: 2px solid #00f2ff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    .timeline-item:hover .timeline-icon {
+      background: #00f2ff;
+      color: #0a192f;
+      transform: scale(1.1);
+      box-shadow: 0 0 30px rgba(0, 242, 255, 0.5);
+    }
+    
+    /* ============================================
+       ZELLIJ SECTION DIVIDERS
+       ============================================ */
+    .zellij-divider {
+      position: relative;
+      height: 80px;
+      overflow: hidden;
+    }
+    .zellij-divider::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: url("data:image/svg+xml,%3Csvg width='100' height='40' viewBox='0 0 100 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 20 L10 10 L20 20 L30 10 L40 20 L50 10 L60 20 L70 10 L80 20 L90 10 L100 20' fill='none' stroke='%2300f2ff' stroke-width='1' opacity='0.2'/%3E%3Cpath d='M0 30 L10 20 L20 30 L30 20 L40 30 L50 20 L60 30 L70 20 L80 30 L90 20 L100 30' fill='none' stroke='%2350c878' stroke-width='1' opacity='0.15'/%3E%3Ccircle cx='10' cy='25' r='3' fill='%2300f2ff' opacity='0.3'/%3E%3Ccircle cx='30' cy='15' r='3' fill='%2350c878' opacity='0.3'/%3E%3Ccircle cx='50' cy='25' r='3' fill='%2300f2ff' opacity='0.3'/%3E%3Ccircle cx='70' cy='15' r='3' fill='%2350c878' opacity='0.3'/%3E%3Ccircle cx='90' cy='25' r='3' fill='%2300f2ff' opacity='0.3'/%3E%3C/svg%3E");
+      background-size: 100px 40px;
+      opacity: 0.4;
+    }
+    
+    /* ============================================
+       MODAL STYLES
+       ============================================ */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 99999;
+    }
+    .modal-overlay.show { display: flex; }
+    .modal-content {
+      background: rgba(17, 34, 64, 0.98);
+      border: 1px solid rgba(0, 242, 255, 0.4);
+      border-radius: 24px;
+      padding: 2rem;
+      width: 90%;
+      max-width: 480px;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      box-shadow: 0 0 60px rgba(0, 242, 255, 0.3);
+    }
+    .modal-close {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: #fff;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 18px;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+    }
+    .modal-close:hover {
+      background: rgba(255, 255, 255, 0.25);
+      transform: rotate(90deg);
+      color: #00f2ff;
+    }
+    
+    /* Success Overlay */
+    #successOverlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 99998;
+    }
+    #successOverlay.show { display: flex; }
+    .success-card {
+      background: rgba(17, 34, 64, 0.98);
+      border: 2px solid #50c878;
+      border-radius: 24px;
+      padding: 3rem;
+      text-align: center;
+    }
+    
+    /* ============================================
+       WHATSAPP FLOAT - ALWAYS VISIBLE
+       ============================================ */
+    .whatsapp-float { 
+      position: fixed; 
+      bottom: 25px; 
+      right: 25px; 
+      z-index: 99997; 
+    }
+    .whatsapp-float a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 60px;
+      height: 60px;
+      background: #25D366;
+      border-radius: 50%;
+      box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+      cursor: pointer;
+      animation: whatsappPulse 2s infinite;
+      transition: all 0.3s ease;
+    }
+    .whatsapp-float a:hover { 
+      transform: scale(1.1); 
+      box-shadow: 0 12px 35px rgba(37, 211, 102, 0.6);
+    }
+    @keyframes whatsappPulse {
+      0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+      70% { box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+    }
+    
+    /* ============================================
+       INTERACTIVE HEXAGON MAP - GLOW + SCALE 1.1x
+       ============================================ */
+    .hex-map-container {
+      position: relative;
+      width: 100%;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    .hex-map {
+      filter: drop-shadow(0 0 15px rgba(0, 242, 255, 0.4));
+    }
+    .hex {
+      fill: rgba(0, 242, 255, 0.15);
+      stroke: rgba(0, 242, 255, 0.6);
+      stroke-width: 1.5;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      transform-origin: center;
+    }
+    .hex:hover {
+      fill: rgba(0, 242, 255, 0.4);
+      stroke: #00ffff;
+      stroke-width: 2;
+      filter: drop-shadow(0 0 15px #00ffff);
+      transform: scale(1.1);
+    }
+    .hex-label {
+      fill: #00f2ff;
+      font-size: 8px;
+      font-family: 'Cairo', sans-serif;
+      pointer-events: none;
+      text-anchor: middle;
+    }
+    .map-popup {
+      position: absolute;
+      background: rgba(10, 25, 47, 0.95);
+      border: 1px solid #00f2ff;
+      border-radius: 8px;
+      padding: 8px 14px;
+      font-size: 14px;
+      color: #fff;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.2s;
+      z-index: 100;
+      white-space: nowrap;
+      box-shadow: 0 0 20px rgba(0, 242, 255, 0.4);
+    }
+    .map-popup.show { opacity: 1; }
+    
+    /* FAQ */
+    details > summary { list-style: none; cursor: pointer; }
+    details > summary::after { 
+      content: '\f107'; 
+      font-family: 'Font Awesome 6 Free'; 
+      float: left; 
+      transition: transform 0.3s ease;
+    }
+    details[open] > summary::after {
+      transform: rotate(180deg);
+    }
+    
+    /* Interactive elements */
+    a, button, select, textarea, input[type="range"] { cursor: pointer; }
+  </style>
+</head>
+<body class="font-arabic">
+  <!-- Stars Canvas -->
+  <canvas id="stars-canvas"></canvas>
+
+  <!-- Loader -->
+  <div class="loader" id="loader">
+    <div class="loader-ring"></div>
+    <div class="loader-ring"></div>
+    <div class="loader-ring"></div>
+  </div>
+
+  <!-- ==================== ORDER MODAL (ZELLIJ STYLE) ==================== -->
+  <div id="contactModal" class="modal-overlay">
+    <div class="modal-content glass zellij-modal">
+      <!-- Close Button with ID -->
+      <button id="closeModalBtn" class="modal-close">
+        <i class="fas fa-times"></i>
+      </button>
+      
+      <h3 class="text-xl font-bold text-white mb-6 text-center">
+        <i class="fas fa-paper-plane text-cyan-400 ml-2"></i>معلومات الطلب
+      </h3>
+      
+      <div class="space-y-4 mb-6">
+        <input type="text" id="modalName" placeholder="الاسم الكامل *" required
+          class="w-full px-4 py-3 rounded-xl glass border border-slate-600 text-white placeholder-slate-400 focus:border-cyan-400 outline-none transition-all duration-300">
+        
+        <input type="tel" id="modalPhone" placeholder="رقم الهاتف *" required
+          class="w-full px-4 py-3 rounded-xl glass border border-slate-600 text-white placeholder-slate-400 focus:border-cyan-400 outline-none transition-all duration-300">
+        
+        <input type="email" id="modalEmail" placeholder="البريد الإلكتروني"
+          class="w-full px-4 py-3 rounded-xl glass border border-slate-600 text-white placeholder-slate-400 focus:border-cyan-400 outline-none transition-all duration-300">
+        
+        <select id="modalType" class="w-full px-4 py-3 rounded-xl glass border border-slate-600 text-white focus:border-cyan-400 outline-none transition-all duration-300">
+          <option value="Residential" class="text-slate-900">سكني (Residential)</option>
+          <option value="Commercial" class="text-slate-900">تجاري (Commercial)</option>
+          <option value="Industrial" class="text-slate-900">صناعي (Industrial)</option>
+        </select>
+        
+        <!-- All 58 Wilayas -->
+        <select id="modalWilaya" class="w-full px-4 py-3 rounded-xl glass border border-slate-600 text-white focus:border-cyan-400 outline-none transition-all duration-300">
+          <option value="" class="text-slate-400">اختر الولاية</option>
+          <option value="أدرار" class="text-slate-900">01 - أدرار</option>
+          <option value="الجزائر" class="text-slate-900">16 - الجزائر</option>
+          <option value="النعامة" class="text-slate-900">02 - النعامة</option>
+          <option value="تيارت" class="text-slate-900">03 - تيارت</option>
+          <option value="الأغواط" class="text-slate-900">04 - الأغواط</option>
+          <option value="أم البواقي" class="text-slate-900">05 - أم البواقي</option>
+          <option value="عين الدفلى" class="text-slate-900">06 - عين الدفلى</option>
+          <option value="عين تموشنت" class="text-slate-900">07 - عين تموشنت</option>
+          <option value="تبسة" class="text-slate-900">12 - تبسة</option>
+          <option value="باتنة" class="text-slate-900">05 - باتنة</option>
+          <option value="بجاية" class="text-slate-900">06 - بجاية</option>
+          <option value="بسكرة" class="text-slate-900">07 - بسكرة</option>
+          <option value="بشار" class="text-slate-900">08 - بشار</option>
+          <option value="البليدة" class="text-slate-900">09 - البليدة</option>
+          <option value="البويرة" class="text-slate-900">10 - البويرة</option>
+          <option value="تمنراست" class="text-slate-900">11 - تمنراست</option>
+          <option value="تيندوف" class="text-slate-900">13 - تيندوف</option>
+          <option value="جيجل" class="text-slate-900">18 - جيجل</option>
+          <option value="سطيف" class="text-slate-900">19 - سطيف</option>
+          <option value="سعيدة" class="text-slate-900">20 - سعيدة</option>
+          <option value="سكيكدة" class="text-slate-900">21 - سكيكدة</option>
+          <option value="سليمان" class="text-slate-900">22 - سليمان</option>
+          <option value="سوق أهراس" class="text-slate-900">23 - سوق أهراس</option>
+          <option value="تيبازة" class="text-slate-900">24 - تيبازة</option>
+          <option value="تيزي وزو" class="text-slate-900">25 - تيزي وزو</option>
+          <option value="تين زواتين" class="text-slate-900">26 - تين زواتين</option>
+          <option value="جلفة" class="text-slate-900">17 - جلفة</option>
+          <option value="خنشلة" class="text-slate-900">28 - خنشلة</option>
+          <option value="قالمة" class="text-slate-900">24 - قالمة</option>
+          <option value="قسنطينة" class="text-slate-900">25 - قسنطينة</option>
+          <option value="المدية" class="text-slate-900">26 - المدية</option>
+          <option value="مستغانم" class="text-slate-900">27 - مستغانم</option>
+          <option value="المسيلة" class="text-slate-900">28 - المسيلة</option>
+          <option value="معسكر" class="text-slate-900">29 - معسر</option>
+          <option value="ورقلة" class="text-slate-900">30 - ورقلة</option>
+          <option value="وادي" class="text-slate-900">31 - وادي</option>
+          <option value="البيض" class="text-slate-900">32 - البيض</option>
+          <option value="إليزي" class="text-slate-900">33 - إليزي</option>
+          <option value="برج باجي مختار" class="text-slate-900">34 - برج باجي مختار</option>
+          <option value="تقرت" class="text-slate-900">35 - تقرت</option>
+          <option value="الطارف" class="text-slate-900">36 - الطارف</option>
+          <option value="عين الدفلى" class="text-slate-900">37 - عنة</option>
+          <option value="غرداية" class="text-slate-900">38 - غرداية</option>
+          <option value="وهران" class="text-slate-900">31 - وهران</option>
+          <option value="بابل" class="text-slate-900">40 - بابل</option>
+          <option value="بومرداس" class="text-slate-900">35 - بومرداس</option>
+          <option value="المغير" class="text-slate-900">47 - المغير</option>
+          <option value="المنيعة" class="text-slate-900">52 - المنيعة</option>
+          <option value="الرينغاس" class="text-slate-900">41 - الركساس</option>
+          <option value="أولاد جلال" class="text-slate-900">42 - أولاد جلال</option>
+          <option value="برج بوعريريج" class="text-slate-900">43 - برج بوعريريج</option>
+          <option value="بسكرة" class="text-slate-900">44 - بيسكر</option>
+          <option value="بشار" class="text-slate-900">45 - بشار</option>
+          <option value="تادمايت" class="text-slate-900">46 - تادمايت</option>
+          <option value="تيسمسيلت" class="text-slate-900">48 - تيسمسيلت</option>
+          <option value="الشلف" class="text-slate-900">49 - الشلف</option>
+          <option value="المدية" class="text-slate-900">50 - المدية</option>
+          <option value="سيدي بلعباس" class="text-slate-900">51 - سيدي بلعباس</option>
+          <option value="عنابة" class="text-slate-900">23 - عنابة</option>
+          <option value="بسكرة" class="text-slate-900">07 - بسكرة</option>
+          <option value="أخرى" class="text-slate-900">أخرى</option>
+        </select>
+        
+        <textarea id="modalMessage" placeholder="رسالتك (اختياري)" rows="2"
+          class="w-full px-4 py-3 rounded-xl glass border border-slate-600 text-white placeholder-slate-400 focus:border-cyan-400 outline-none transition-all duration-300"></textarea>
+      </div>
+      
+      <button type="button" id="modalSubmitBtn" class="btn-primary w-full py-3 rounded-xl font-bold">
+        <i class="fas fa-paper-plane ml-2"></i> إرسال
+      </button>
+      
+      <div id="modalErrorMsg" class="hidden mt-4 p-3 bg-red-500/20 border border-red-500 text-red-400 rounded-xl text-center">
+        <i class="fas fa-exclamation-circle ml-1"></i> حدث خطأ، يرجى المحاولة لاحقاً
+      </div>
+    </div>
+  </div>
+
+  <!-- Success Overlay -->
+  <div id="successOverlay">
+    <div class="success-card glass">
+      <div class="w-20 h-20 bg-emerald-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+        <i class="fas fa-check text-emerald-400 text-4xl"></i>
+      </div>
+      <h3 class="text-2xl font-bold text-white mb-2">تم بنجاح!</h3>
+      <p class="text-slate-300 mb-4">شكراً لطلبك. سيتواصل معك فريق سولارا قريباً</p>
+      <button id="successCloseBtn" class="btn-primary px-6 py-2 rounded-xl font-bold">
+        إغلاق
+      </button>
+    </div>
+  </div>
+
+  <!-- WhatsApp Float - Always Visible -->
+  <div class="whatsapp-float">
+    <a href="https://wa.me/213784367619?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D8%B3%D9%88%D9%84%D8%A7%D8%B1%D8%A7%D8%8C%20%D9%82%D9%85%D8%AA%20%D8%A7%D8%B3%D8%AA%D8%AE%D8%AF%D8%A7%D9%85%20%D8%A7%D8%B1%D9%8A%D8%AF%20%D8%A7%D8%B3%D8%AA%D8%B4%D8%A7%D8%B1%D8%A9%20%D8%AD%D9%88%D9%84%20%D8%AA%D8%B1%D9%83%D9%8A%D8%A8%20%D9%86%D8%B8%D8%A7%D9%85%20%D8%B7%D8%A7%D9%82%D8%A9%20%D8%B4%D9%85%D8%B3%D9%8A%D8%A9." target="_blank" aria-label="تواصل عبر واتساب">
+      <i class="fab fa-whatsapp text-white text-2xl"></i>
+    </a>
+  </div>
+
+  <!-- Header with Zellij Pattern -->
+  <header id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-navy-900/50 backdrop-blur-md zellij-header">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+      <div class="solara-logo">
+        <!-- SVG Logo: Sun + Tech Icon -->
+        <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" class="w-10 h-10">
+          <defs>
+            <linearGradient id="sunGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#00f2ff;stop-opacity:1" />
+              <stop offset="100%" style="stop-color:#50c878;stop-opacity:1" />
+            </linearGradient>
+            <filter id="glow">
+              <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
+              <feMerge>
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          <!-- Sun Core -->
+          <circle class="logo-sun" cx="20" cy="20" r="10" fill="url(#sunGradient)" opacity="0.95" filter="url(#glow)"/>
+          <!-- Tech Ring -->
+          <circle cx="20" cy="20" r="14" fill="none" stroke="#00f2ff" stroke-width="1.5" stroke-dasharray="30 15" opacity="0.7">
+            <animateTransform attributeName="transform" type="rotate" from="0 20 20" to="360 20 20" dur="20s" repeatCount="indefinite"/>
+          </circle>
+          <!-- Sun Rays -->
+          <g class="logo-sun" stroke="url(#sunGradient)" stroke-width="2" stroke-linecap="round" opacity="0.8">
+            <line x1="20" y1="2" x2="20" y2="7" />
+            <line x1="20" y1="33" x2="20" y2="38" />
+            <line x1="2" y1="20" x2="7" y2="20" />
+            <line x1="33" y1="20" x2="38" y2="20" />
+            <line x1="7.3" y1="7.3" x2="11" y2="11" />
+            <line x1="29" y1="29" x2="32.7" y2="32.7" />
+            <line x1="7.3" y1="32.7" x2="11" y2="29" />
+            <line x1="29" y1="11" x2="32.7" y2="7.3" />
+          </g>
+          <!-- Center Dot (Tech Element) -->
+          <circle cx="20" cy="20" r="3" fill="#0a192f"/>
+          <circle cx="20" cy="20" r="1.5" fill="#00f2ff"/>
+        </svg>
+        <div>
+          <span class="text-white text-xl font-bold">SOLARA</span>
+          <span class="text-cyan-400 text-sm font-bold">2026</span>
+        </div>
+      </div>
+      <nav class="hidden md:flex gap-6">
+        <a href="#home" class="text-slate-300 hover:text-cyan-400 transition duration-300">الرئيسية</a>
+        <a href="#calculator" class="text-slate-300 hover:text-cyan-400 transition duration-300">الحاسبة</a>
+        <a href="#process" class="text-slate-300 hover:text-cyan-400 transition duration-300">الخطوات</a>
+        <a href="#coverage" class="text-slate-300 hover:text-cyan-400 transition duration-300">التغطية</a>
+        <a href="#faq" class="text-slate-300 hover:text-cyan-400 transition duration-300">الأسئلة</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section id="home" class="hero min-h-screen flex items-center justify-center pt-20">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <div data-aos="fade-down" class="inline-flex glass px-5 py-2 rounded-full mb-8">
+        <i class="fas fa-bolt text-cyan-400 ml-2"></i>
+        <span class="text-cyan-400 font-medium">الطاقة الشمسية 2026</span>
+      </div>
+      
+      <h1 data-aos="fade-up" class="text-5xl md:text-6xl font-black text-white mb-6">
+        سولارا<br>
+        <span class="text-neon">المستقبل يبدأ اليوم</span>
+      </h1>
+      
+      <p data-aos="fade-up" data-aos-delay="200" class="text-lg text-slate-300 mb-10">
+        حلول شمسية بـفيزياء جزائرية حقيقية. وفّر حتى 85% مع ضمان 25 سنة.
+      </p>
+      
+      <div data-aos="zoom-in" data-aos-delay="400" class="flex flex-col sm:flex-row gap-4 justify-center">
+        <button id="btn-calc" class="btn-primary px-8 py-3 rounded-xl font-bold">
+          <i class="fas fa-calculator ml-2"></i>احسب وفرك
+        </button>
+        <button id="btn-start" class="btn-neon px-8 py-3 rounded-xl font-bold text-white">
+          <i class="fas fa-rocket ml-2"></i>ابدأ الآن
+        </button>
+      </div>
+      
+      <!-- Stats -->
+      <div data-aos="fade-up" data-aos-delay="600" class="grid grid-cols-3 gap-4 mt-16 max-w-md mx-auto">
+        <div class="glass rounded-xl p-4">
+          <p class="text-3xl font-bold text-cyan-400 counter" data-target="5000">0</p>
+          <p class="text-slate-400 text-xs mt-1">عميل</p>
+        </div>
+        <div class="glass rounded-xl p-4">
+          <p class="text-3xl font-bold text-cyan-400 counter" data-target="85">0</p>
+          <p class="text-slate-400 text-xs mt-1">% توفير</p>
+        </div>
+        <div class="glass rounded-xl p-4">
+          <p class="text-3xl font-bold text-cyan-400 counter" data-target="25">0</p>
+          <p class="text-slate-400 text-xs mt-1">سنة ضمان</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+      <i class="fas fa-chevron-down text-cyan-400 text-xl" style="cursor: pointer;"></i>
+    </div>
+  </section>
+
+  <!-- Zellij Divider -->
+  <div class="zellij-divider"></div>
+
+  <!-- Calculator -->
+  <section id="calculator" class="py-20">
+    <div class="max-w-3xl mx-auto px-6">
+      <h2 data-aos="fade-right" class="text-4xl font-bold text-white text-center mb-2">
+        حاسبة <span class="text-neon">الوفرك</span>
+      </h2>
+      <p data-aos="fade-right" class="text-slate-400 text-center mb-10">آلة حاسبة بـفيزياء شمسية جزائرية</p>
+      
+      <div class="glass-cyan rounded-2xl p-8">
+        <h3 class="text-xl font-bold text-white mb-6 text-center">
+          <i class="fas fa-sliders-h text-cyan-400 ml-2"></i>فاتورتك الشهرية
+        </h3>
+        
+        <div class="mb-6">
+          <div class="flex justify-between text-sm text-slate-400 mb-2">
+            <span>100 د.ج</span>
+            <span class="text-cyan-400 text-4xl font-bold" id="billValue">2000</span>
+            <span>5000 د.ج</span>
+          </div>
+          <input type="range" id="billSlider" min="100" max="5000" value="2000" step="100" 
+            class="w-full slider-cyan rounded-lg">
+        </div>
+        
+        <!-- Results -->
+        <div class="grid grid-cols-2 gap-4 mb-6">
+          <div class="result-card rounded-xl p-4 text-center">
+            <i class="fas fa-th-large text-cyan-400 text-xl mb-2"></i>
+            <p class="text-2xl font-bold text-white result-value" id="panelsNum">0</p>
+            <p class="text-slate-400 text-xs">لوح (550W)</p>
+          </div>
+          <div class="result-card rounded-xl p-4 text-center">
+            <i class="fas fa-bolt text-cyan-400 text-xl mb-2"></i>
+            <p class="text-2xl font-bold text-white result-value" id="kwNum">0</p>
+            <p class="text-slate-400 text-xs">كيلو واط</p>
+          </div>
+          <div class="result-card rounded-xl p-4 text-center">
+            <i class="fas fa-piggy-bank text-emerald-400 text-xl mb-2"></i>
+            <p class="text-2xl font-bold text-emerald-400 result-value" id="savingsNum">0</p>
+            <p class="text-slate-400 text-xs">د.ج سنوي</p>
+          </div>
+          <div class="result-card rounded-xl p-4 text-center">
+            <i class="fas fa-leaf text-cyan-400 text-xl mb-2"></i>
+            <p class="text-2xl font-bold text-cyan-400 result-value" id="co2Num">0</p>
+            <p class="text-slate-400 text-xs">كغ CO2</p>
+          </div>
+        </div>
+        
+        <button type="button" id="orderNowBtn" class="btn-primary w-full py-3 rounded-xl font-bold">
+          اطلب الآن <i class="fas fa-arrow-left mr-2"></i>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Zellij Divider -->
+  <div class="zellij-divider"></div>
+
+  <!-- Process -->
+  <section id="process" class="py-20">
+    <div class="max-w-3xl mx-auto px-6">
+      <h2 data-aos="fade-right" class="text-3xl font-bold text-white text-center mb-12">
+        كيف <span class="text-neon">نعمل</span>؟
+      </h2>
+      
+      <div class="space-y-6">
+        <div class="timeline-item" data-aos="fade-right">
+          <div class="timeline-icon"><i class="fas fa-search text-cyan-400"></i></div>
+          <div class="glass rounded-xl p-5">
+            <h3 class="font-bold text-white mb-1">1. التدقيق الافتراضي</h3>
+            <p class="text-slate-400 text-sm">نحلّل فواتيرك ونحدد وفرك</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item" data-aos="fade-right" data-aos-delay="150">
+          <div class="timeline-icon"><i class="fas fa-hard-hat text-cyan-400"></i></div>
+          <div class="glass rounded-xl p-5">
+            <h3 class="font-bold text-white mb-1">2. زيارة الموقع</h3>
+            <p class="text-slate-400 text-sm">فريق متخصص يزور موقعك مجاناً</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item" data-aos="fade-right" data-aos-delay="300">
+          <div class="timeline-icon"><i class="fas fa-tools text-cyan-400"></i></div>
+          <div class="glass rounded-xl p-5">
+            <h3 class="font-bold text-white mb-1">3. التركيب</h3>
+            <p class="text-slate-400 text-sm">تركيب احترافي في 3-7 أيام</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item" data-aos="fade-right" data-aos-delay="450">
+          <div class="timeline-icon"><i class="fas fa-power-off text-cyan-400"></i></div>
+          <div class="glass rounded-xl p-5">
+            <h3 class="font-bold text-white mb-1">4. التفعيل</h3>
+            <p class="text-slate-400 text-sm">ابدأ التوفير الفوري</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Zellij Divider -->
+  <div class="zellij-divider"></div>
+
+  <!-- Interactive Hexagon Map -->
+  <section id="coverage" class="py-20">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <h2 data-aos="fade-up" class="text-3xl font-bold text-white text-center mb-4">
+        تغطيتنا <span class="text-neon">الجغرافية</span> 🇩🇿
+      </h2>
+      <p data-aos="fade-up" class="text-slate-400 mb-8">نغطي جميع الولايات الجزائرية - مرر الماوس للتفاعل</p>
+      
+      <!-- Interactive Hexagon Map -->
+      <div class="hex-map-container" data-aos="zoom-in">
+        <svg viewBox="0 0 400 450" class="hex-map" xmlns="http://www.w3.org/2000/svg">
+          <!-- Northern Region -->
+          <polygon class="hex" data-wilaya="الجزائر" points="200,30 230,45 230,75 200,90 170,75 170,45"/>
+          <polygon class="hex" data-wilaya="بومرداس" points="230,45 260,60 260,90 230,75 200,90 230,45"/>
+          <polygon class="hex" data-wilaya="تيبازة" points="230,75 260,90 260,120 230,105 200,90 230,75"/>
+          <polygon class="hex" data-wilaya="عين الدفلى" points="200,90 230,105 230,135 200,120 170,105 170,75"/>
+          <polygon class="hex" data-wilaya="الشلف" points="170,75 200,90 200,120 170,105 140,90 140,60"/>
+          <polygon class="hex" data-wilaya="المدية" points="200,120 230,135 230,165 200,150 170,135 170,105"/>
+          <polygon class="hex" data-wilaya="البليدة" points="230,105 260,120 260,150 230,135 200,120 230,105"/>
+          
+          <!-- Eastern Region -->
+          <polygon class="hex" data-wilaya="قسنطينة" points="260,90 290,105 290,135 260,120 230,105 260,90"/>
+          <polygon class="hex" data-wilaya="باتنة" points="260,120 290,135 290,165 260,150 230,135 260,120"/>
+          <polygon class="hex" data-wilaya="عنابة" points="290,75 320,90 320,120 290,105 260,90 290,75"/>
+          <polygon class="hex" data-wilaya="سكيكدة" points="290,105 320,120 320,150 290,135 260,120 290,105"/>
+          <polygon class="hex" data-wilaya="جيجل" points="260,135 290,150 290,180 260,165 230,150 260,135"/>
+          <polygon class="hex" data-wilaya="سطيف" points="290,135 320,150 320,180 290,165 260,150 290,135"/>
+          <polygon class="hex" data-wilaya="تبسة" points="320,150 350,165 350,195 320,180 290,165 320,150"/>
+          
+          <!-- Central Region -->
+          <polygon class="hex" data-wilaya="البويرة" points="200,150 230,165 230,195 200,180 170,165 170,135"/>
+          <polygon class="hex" data-wilaya="تيزي وزو" points="170,135 200,150 200,180 170,165 140,150 140,120"/>
+          <polygon class="hex" data-wilaya="jomdir" points="230,165 260,180 260,210 230,195 200,180 230,165"/>
+          <polygon class="hex" data-wilaya="سعيدة" points="200,180 230,195 230,225 200,210 170,195 170,165"/>
+          <polygon class="hex" data-wilaya="المسيلة" points="170,165 200,180 200,210 170,195 140,180 140,150"/>
+          <polygon class="hex" data-wilaya="جلفة" points="140,150 170,165 170,195 140,180 110,165 110,135"/>
+          
+          <!-- Western Region -->
+          <polygon class="hex" data-wilaya="وهران" points="60,90 90,105 90,135 60,120 30,105 30,75"/>
+          <polygon class="hex" data-wilaya="معسكر" points="90,105 120,120 120,150 90,135 60,120 90,105"/>
+          <polygon class="hex" data-wilaya="سليمان" points="120,120 150,135 150,165 120,150 90,135 120,120"/>
+          <polygon class="hex" data-wilaya="تيارت" points="90,135 120,150 120,180 90,165 60,150 60,120"/>
+          <polygon class="hex" data-wilaya="الأغواط" points="120,150 150,165 150,195 120,180 90,165 120,150"/>
+          <polygon class="hex" data-wilaya="البيض" points="60,150 90,165 90,195 60,180 30,165 30,135"/>
+          <polygon class="hex" data-wilaya="النعام" points="90,180 120,195 120,225 90,210 60,195 60,165"/>
+          
+          <!-- Southern Region -->
+          <polygon class="hex" data-wilaya="ورقلة" points="150,210 180,225 180,255 150,240 120,225 150,210"/>
+          <polygon class="hex" data-wilaya="تقرت" points="180,225 210,240 210,270 180,255 150,240 180,225"/>
+          <polygon class="hex" data-wilaya="بسكرة" points="210,240 240,255 240,285 210,270 180,255 210,240"/>
+          <polygon class="hex" data-wilaya="غرداية" points="180,255 210,270 210,300 180,285 150,270 180,255"/>
+          <polygon class="hex" data-wilaya="وادي" points="120,225 150,240 150,270 120,255 90,240 120,225"/>
+          <polygon class="hex" data-wilaya="تندوف" points="60,195 90,210 90,240 60,225 30,210 60,195"/>
+          <polygon class="hex" data-wilaya="أدرار" points="30,150 60,165 60,195 30,180 0,165 30,150"/>
+          <polygon class="hex" data-wilaya="تمنراست" points="90,255 120,270 120,300 90,285 60,270 90,255"/>
+          <polygon class="hex" data-wilaya="إليزي" points="120,285 150,300 150,330 120,315 90,300 120,285"/>
+        </svg>
+        
+        <!-- Popup Label -->
+        <div id="mapPopup" class="map-popup"></div>
+      </div>
+      
+      <p data-aos="fade-up" class="text-cyan-400 mt-8">
+        <i class="fas fa-map-marker-alt ml-2"></i>
+        نعمل في جميع الولايات الـ 58
+      </p>
+    </div>
+  </section>
+
+  <!-- Zellij Divider -->
+  <div class="zellij-divider"></div>
+
+  <!-- FAQ -->
+  <section id="faq" class="py-20">
+    <div class="max-w-2xl mx-auto px-6">
+      <h2 class="text-3xl font-bold text-white text-center mb-10">الأسئلة <span class="text-neon">الشائعة</span></h2>
+      
+      <div class="space-y-3">
+        <details class="glass rounded-xl">
+          <summary class="p-4 text-white font-medium">كم يستغرق التركيب؟</summary>
+          <div class="px-4 pb-4 text-slate-400">3-7 أيام عمل</div>
+        </details>
+        <details class="glass rounded-xl">
+          <summary class="p-4 text-white font-medium">مدة الضمان؟</summary>
+          <div class="px-4 pb-4 text-slate-400">25 سنة على الألواح</div>
+        </details>
+        <details class="glass rounded-xl">
+          <summary class="p-4 text-white font-medium">هل التركيب مجاني؟</summary>
+          <div class="px-4 pb-4 text-slate-400">نعم، التركيب مجاني في جميع الولايات</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-8 border-t border-slate-800 text-center">
+    <p class="text-slate-500">© 2026 سولارا - الطاقة الشمسية للجزائر 🇩🇿</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    // ============================================
+    // SOLARA 2026 - ALGERIAN SOLAR CALCULATOR
+    // ============================================
+    
+    // Initialize AOS
+    AOS.init({ duration: 800, once: true });
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.registerPlugin(ScrollToPlugin);
+    
+    // ============================================
+    // NAVBAR SCROLL EFFECT
+    // ============================================
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+    
+    // ============================================
+    // LOADER
+    // ============================================
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('loader').classList.add('hidden');
+        gsap.utils.toArray('.counter').forEach(el => {
+          const target = parseInt(el.dataset.target) || 0;
+          gsap.to(el, { duration: 3.5, ease: 'power2.out', innerText: target, snap: { innerText: 1 }});
+        });
+      }, 2000);
+    });
+    
+    // ============================================
+    // STARS CANVAS BACKGROUND
+    // ============================================
+    const canvas = document.getElementById('stars-canvas');
+    const ctx = canvas.getContext('2d');
+    let stars = [];
+    
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+    
+    class Star {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 1.5 + 0.5;
+        this.opacity = Math.random();
+        this.speed = Math.random() * 0.02 + 0.005;
+      }
+      update() {
+        this.opacity += this.speed;
+        if (this.opacity > 1 || this.opacity < 0.1) this.speed *= -1;
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(0, 242, 255, ${this.opacity})`;
+        ctx.fill();
+      }
+    }
+    
+    for (let i = 0; i < 150; i++) stars.push(new Star());
+    
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      stars.forEach(s => { s.update(); s.draw(); });
+      requestAnimationFrame(animate);
+    }
+    animate();
+    
+    // ============================================
+    // SOLAR CALCULATOR LOGIC
+    // ============================================
+    const PEAK_SUN_HOURS = 5.5; // Average for Algeria
+    const EFFICIENCY = 0.75;
+    const PANEL_WATTAGE = 0.55; // 550W panel
+    const RATE = 5.0; // DZD per kWh
+    const SAVINGS_RATE = 0.85; // 85% savings
+    
+    function calculate(bill) {
+      const monthlyKwh = bill / RATE;
+      const dailyKwh = monthlyKwh / 30;
+      const kw = dailyKwh / (PEAK_SUN_HOURS * EFFICIENCY);
+      const panels = Math.ceil(kw / PANEL_WATTAGE);
+      const savings = Math.round(bill * 12 * SAVINGS_RATE);
+      const co2 = Math.round(kw * PEAK_SUN_HOURS * 365 * 0.5);
+      return { panels, kw: kw.toFixed(2), savings, co2 };
+    }
+    
+    function updateCalc() {
+      const bill = parseInt(document.getElementById('billSlider').value);
+      document.getElementById('billValue').textContent = bill.toLocaleString();
+      const result = calculate(bill);
+      gsap.to('#panelsNum', { duration: 0.3, innerText: result.panels, snap: { innerText: 1 }});
+      gsap.to('#kwNum', { duration: 0.3, innerText: result.kw, snap: { innerText: 0.01 }});
+      gsap.to('#savingsNum', { duration: 0.3, innerText: result.savings, snap: { innerText: 100 }});
+      gsap.to('#co2Num', { duration: 0.3, innerText: result.co2, snap: { innerText: 10 }});
+    }
+    
+    document.getElementById('billSlider').addEventListener('input', updateCalc);
+    updateCalc();
+    
+    // ============================================
+    // MODAL FUNCTIONALITY (FIXED)
+    // ============================================
+    const modal = document.getElementById('contactModal');
+    const successOverlay = document.getElementById('successOverlay');
+    
+    function openModal() {
+      modal.classList.add('show');
+      document.body.classList.add('modal-open');
+    }
+    
+    function closeModal() {
+      modal.classList.remove('show');
+      document.body.classList.remove('modal-open');
+    }
+    
+    function closeSuccess() {
+      successOverlay.classList.remove('show');
+    }
+    
+    // Close button with ID - FIXED
+    document.getElementById('closeModalBtn').addEventListener('click', closeModal);
+    document.getElementById('successCloseBtn').addEventListener('click', closeSuccess);
+    
+    // Open modal on button click
+    document.getElementById('orderNowBtn').addEventListener('click', openModal);
+    
+    // Close on overlay click
+    modal.addEventListener('click', function(e) {
+      if (e.target === modal) closeModal();
+    });
+    
+    // Close on Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeModal();
+        closeSuccess();
+      }
+    });
+    
+    // Modal Form Submit
+    document.getElementById('modalSubmitBtn').addEventListener('click', async function() {
+      const name = document.getElementById('modalName').value.trim();
+      const phone = document.getElementById('modalPhone').value.trim();
+      
+      if (!name || name.length < 2) { 
+        alert('الاسم مطلوب'); 
+        return; 
+      }
+      if (!phone || !/^(05|06|07)[0-9]{8}$/.test(phone)) { 
+        alert('رقم الهاتف غير صالح'); 
+        return; 
+      }
+      
+      this.disabled = true;
+      this.innerHTML = '<i class="fas fa-spinner fa-spin ml-2"></i> جاري الإرسال...';
+      
+      try {
+        const res = await fetch('/api/v1/leads', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name,
+            email: document.getElementById('modalEmail').value,
+            phone,
+            city: document.getElementById('modalWilaya').value,
+            type: document.getElementById('modalType').value,
+            message: document.getElementById('modalMessage').value
+          })
+        });
+        
+        const data = await res.json();
+        
+        if (data.success) {
+          closeModal();
+          successOverlay.classList.add('show');
+          // Reset form
+          document.getElementById('modalName').value = '';
+          document.getElementById('modalPhone').value = '';
+          document.getElementById('modalEmail').value = '';
+          document.getElementById('modalWilaya').value = '';
+          document.getElementById('modalMessage').value = '';
+        } else {
+          throw new Error();
+        }
+      } catch (e) {
+        document.getElementById('modalErrorMsg').classList.remove('hidden');
+        setTimeout(() => document.getElementById('modalErrorMsg').classList.add('hidden'), 3000);
+      } finally {
+        this.disabled = false;
+        this.innerHTML = '<i class="fas fa-paper-plane ml-2"></i> إرسال';
+      }
+    });
+    
+    // ============================================
+    // INTERACTIVE HEXAGON MAP (GLOW + SCALE 1.1x)
+    // ============================================
+    const hexagons = document.querySelectorAll('.hex');
+    const mapPopup = document.getElementById('mapPopup');
+    const mapContainer = document.querySelector('.hex-map-container');
+    
+    hexagons.forEach(hex => {
+      hex.addEventListener('mouseenter', (e) => {
+        const wilaya = hex.getAttribute('data-wilaya');
+        if (wilaya) {
+          mapPopup.textContent = wilaya;
+          mapPopup.classList.add('show');
+        }
+      });
+      
+      hex.addEventListener('mousemove', (e) => {
+        const rect = mapContainer.getBoundingClientRect();
+        mapPopup.style.left = (e.clientX - rect.left + 10) + 'px';
+        mapPopup.style.top = (e.clientY - rect.top - 30) + 'px';
+      });
+      
+      hex.addEventListener('mouseleave', () => {
+        mapPopup.classList.remove('show');
+      });
+    });
+    
+    // ============================================
+    // SMOOTH SCROLL
+    // ============================================
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          gsap.to(window, { duration: 0.7, scrollTo: target, ease: 'power2.inOut' });
+        }
+      });
+    });
+    
+    document.getElementById('btn-calc').addEventListener('click', function() {
+      gsap.to(window, { duration: 0.7, scrollTo: '#calculator', ease: 'power2.inOut' });
+    });
+    
+    document.getElementById('btn-start').addEventListener('click', function() {
+      gsap.to(window, { duration: 0.7, scrollTo: '#calculator', ease: 'power2.inOut' });
+    });
+    
+    // ============================================
+    // WHATSAPP FLOAT - ALWAYS VISIBLE
+    // The WhatsApp button is positioned fixed with z-index 99997
+    // Animation ensures it's always noticeable
+    // ============================================
+  </script>
+</body>
+</html>
